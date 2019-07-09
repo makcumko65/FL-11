@@ -1,5 +1,5 @@
 let email = prompt('Enter your email');
-let promptForPassword = false;
+let askForPassword = false;
 const MIN_LENGTH__OF__EMAIL = 6;
 const MIN_LENGTH__OF__PASSWORD = 5;
 let emailList = {
@@ -12,19 +12,21 @@ if(email === '' || email === null){
     if(email.length < MIN_LENGTH__OF__EMAIL){
         alert('I don\'t know any emails having name length less than 6 symbols');
     }else{
+        //Сheck whether there is such an email in our emailList
         for(let key in emailList){
-            if(email === key){
-                promptForPassword = true;
+            if(email === key){ 
+                askForPassword = true;
                 break;  
             }
         }
-        if(promptForPassword){
+        if(askForPassword){
             let password = prompt('Enter password');
             if(password === '' || password === null){
                 alert('Canceled');
             }else{
                 let wrongPassword = true;
                 for(let key in emailList){
+                    //Сheck whether there is a password with such an email in our emailList
                     if(password === emailList[key] && email === key){
                         wrongPassword = false;
                         let changePassword = confirm('Do you want to change your password?');
